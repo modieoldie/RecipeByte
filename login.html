@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/css/sections/login.css">
+    <link rel="stylesheet" href="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/css/sections/header.css">
+</head>
+<body>
+
+    <!-- Header -->
+     <header>
+        <nav class="header__nav">
+            <div class="header__container">
+                <a href="/" id="header__logo">
+                    <img src="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/images/logo-13.svg" alt="Company Logo" class="logo"\>
+                </a>
+                <a href="/" id="header__companyName">RecipeByte</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Box -->
+    <section class="box">
+        <div class="container">
+            <div class="form-box active" id="login-form">
+                <form action="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/php/login.php" method="post">
+                    <h2>Login</h2>
+                    <div id="login-error-message" class="error-message"></div>
+                    <input type="email" name="email" placeholder="Email or Phone number" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <p><a href="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/html/forgot-password.html">Forgot Password</a></p>
+                    <div class="button-group">
+                        <button type="submit" name="login" id="login-btn">Login</button>
+                        <button type="button" name="sign_up" id="signup-btn" onclick="showForm('register-form')" formnovalidate>Sign Up</button>
+                    </div>
+                    
+                </form>
+            </div>
+
+
+            <div class="form-box" id="register-form">
+                <form action="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/php/login.php" method="post">
+                    <h2>Sign Up</h2>
+                    <div id="register-error-message" class="error-message"></div>
+                    <input type="email" name="email" placeholder="Email or Phone number" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
+                    <div class="button-group">
+                        <button type="submit" name="sign_up" id="signup-btn">Sign Up</button>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/js/script.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const registerForm = document.querySelector("#register-form form");
+            const passwordInput = registerForm.querySelector("input[name='password']");
+            const confirmPasswordInput = registerForm.querySelector("input[name='confirm_password']");
+            const errorMessage = document.getElementById("register-error-message");
+
+            registerForm.addEventListener("submit", function (e) {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                // Password validation regex
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+                // Check password strength
+                if (!passwordRegex.test(password)) {
+                    e.preventDefault();
+                    errorMessage.textContent = 
+                        "Password must be at least 8 characters long and include upper, lower, number, and special character.";
+                    return;
+                }
+
+                // Check password confirmation
+                if (password !== confirmPassword) {
+                    e.preventDefault();
+                    errorMessage.textContent = "Passwords do not match.";
+                    return;
+                }
+
+                // Clear errors if valid
+                errorMessage.textContent = "";
+            });
+        });
+    </script>
+
+</body>
+</html>

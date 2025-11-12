@@ -1,0 +1,565 @@
+/* General Reset & Font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inria Serif", serif;
+}
+
+/* ====== Modal background ====== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 25px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+}
+
+/* ====== Style for the form inside the modal ====== */
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-content label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"],
+.modal-content input[type="file"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-content button {
+  background-color: black;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.modal-content button:hover {
+  background-color: #333;
+}
+
+/* ====== Layout ====== */
+
+#header__cart {
+  position: absolute; /* float over header container */
+  top: 50%; /* vertically center in header */
+  right: 90px; /* distance from right edge */
+  transform: translateY(-50%); /* exact vertical centering */
+  display: block;
+  width: 35px; /* icon size */
+  height: 35px;
+}
+
+#header__cart img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#header__cart:hover img {
+  opacity: 0.8; /* subtle hover feedback */
+  transition: opacity 0.2s ease;
+}
+
+#profile__icon {
+  position: absolute; /* float over header container */
+  top: 50%; /* vertically center in header */
+  right: 30px; /* distance from right edge */
+  transform: translateY(-50%); /* exact vertical centering */
+  display: block;
+  width: 35px; /* icon size */
+  height: 35px;
+}
+
+#profile__icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#profile__icon:hover img {
+  opacity: 0.8; /* subtle hover feedback */
+  transition: opacity 0.2s ease;
+}
+
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 85vh;
+  background-color: #fff;
+  padding: 40px 20px;
+  gap: 40px;
+}
+
+/* Sidebar column (sidebar + settings) */
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px; /* spacing between sidebar and settings */
+}
+
+/* Sidebar (black box) */
+.sidebar {
+  flex: 0 0 300px;
+}
+
+.sidebar-column > form {
+  width: 100%;
+}
+
+.profile-box {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile-name {
+  font-size: 26px;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to top, #ffffff, #e2e2e2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: white;
+  -webkit-text-fill-color: transparent;
+}
+
+.macros p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+/* Main content (My Recipes / Saved Recipes) */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 900px;
+}
+
+.recipes-section,
+.saved-section {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.recipes-section h2,
+.saved-section h2 {
+  font-size: 32px;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.placeholder {
+  color: #333;
+  font-size: 18px;
+}
+/* ===== Recipe Grid & Boxes ===== */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+}
+
+.recipe-box {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ====== Settings Section ====== */
+.settings-section {
+  width: 100%; /* matches sidebar width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-toggle,
+.logout-btn,
+.settings-dropdown {
+  width: 100%; /* fill sidebar-column width */
+}
+
+.settings-toggle {
+  padding: 15px;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.settings-toggle:hover {
+  background-color: #c0c0c0;
+}
+
+.settings-dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  background-color: #ffffff;
+  border-radius: 0 0 10px 10px;
+}
+
+.settings-dropdown.active {
+  max-height: 300px; /* enough space for all options */
+}
+
+.settings-option {
+  display: block;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: #fff;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  transition: background-color 0.2s;
+}
+
+.settings-option:hover {
+  color: #fff;
+  background-color: #3d0000;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: black;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #36021f;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap; /* ensures stacking on mobile */
+  gap: 10px;
+}
+
+.upload-btn {
+  padding: 12px 20px;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.upload-btn:hover {
+  background-color: #36021f;
+  transform: translateY(-2px);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 900px) {
+  .profile-page {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .sidebar-column {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .profile-box {
+    padding: 25px 15px;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .settings-section {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-name {
+    font-size: 22px;
+  }
+
+  .macros p {
+    font-size: 16px;
+  }
+
+  .recipes-section h2,
+  .saved-section h2 {
+    font-size: 26px;
+  }
+
+  .settings-toggle {
+    font-size: 18px;
+  }
+
+  .settings-option {
+    font-size: 16px;
+  }
+
+  .logout-btn {
+    font-size: 18px;
+  }
+}
+
+/* Modal overlay */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto; /* allows scrolling if form is tall */
+  padding: 40px 0; /* adds breathing room at top/bottom */
+}
+
+/* Modal box */
+.modal-content {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin: auto;
+}
+
+/* Close button */
+.close-btn {
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/* Inputs */
+.modal-content input[type="text"],
+.modal-content input[type="file"] {
+  display: block;
+  width: 95%;
+  padding: 8px;
+  margin: 8px 0 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Buttons */
+.modal-content button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.modal-content button:hover {
+  background-color: black;
+}
+
+/* CSS for the thumbnail boxes for user uploaded recipes under My Recipes. Also CSS for the pop-up when you
+   click on a thumbnail. */
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.recipe-box {
+  cursor: pointer;
+  text-align: center; /* Centers the title under the image */
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column; /* Ensures vertical layout */
+  align-items: center; /* Centers image + text */
+}
+
+.recipe-box:hover {
+  transform: scale(1.03);
+}
+
+.recipe-thumbnail {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.recipe-box h3 {
+  margin: 10px 0;
+  color: #333;
+  font-size: 1rem;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+}
+
+.modal-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* CSS design for adding the delete recipe button to each recipe in the profile page. */
+.recipe-box {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #ff4d4d; /* red circle */
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.delete-btn:hover {
+  background-color: #d93030; /* darker red on hover */
+  transform: scale(1.1); /* slight zoom effect */
+}

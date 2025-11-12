@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Inria Serif", serif;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.header__container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 2560px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+#header__companyName {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 32px;
+  margin: 25px;
+
+  /* consistent gradient text look */
+  background-image: linear-gradient(to top, #ffffff, #e2e2e2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: white; /* fallback for older browsers */
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+
+  /* maintain layout consistency */
+  white-space: nowrap;
+}
+
+/* Adjust the company logo*/
+#header__logo {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 60%;
+}
+
+/*Logo image styling*/
+#header__logo img.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 60%;
+}
+
+/*Page link styling*/
+#header__page {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 40px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;    
+}
+
+.fa-gem {
+    margin-right: 8px;
+}
+
+/*Menu styling*/
+.header__menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    margin-left: auto;
+}
+
+.icon {
+    display: flex; 
+    width: 50px;
+    height: 50px;
+    border-radius: 35%;
+    text-decoration: none;
+}
+
+.search {
+    margin: 280px 0 0;
+    display: flex;
+    position: absolute;
+    left: 40%;
+    width: 45px;
+    height: 45px;
+}
+
+/*Individual navbar item styling (not in use rn)*/
+.navbar__item {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    padding: 0 5px;
+    height: 40px;
+}
+
+/*Styling for buttons (not in use rn)*/
+.navbar__links {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 16px;
+    height: 100%;
+}
+
+.navbar__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto 16px;
+    width: 100%;
+}
+
+.button {
+    display: flex;
+    padding: 10px 10px;
+    text-align: center;
+    max-width: 100%;
+    text-decoration: none; 
+}
+
+.navbar__links:hover {
+    color: #0c0d68;
+    transition: all 0.3s ease;
+}
+
+/* [Change #4] Adjust header responsiveness to flow more smoothly on tablets/phones */
+@media screen and (max-width: 1090px) {
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    height: auto; /* allow flexible height */
+    padding: 0 20px; /* narrower padding for small screens */
+  }
+
+  #header__logo img.logo {
+    width: 70px; /* smaller logo */
+    height: 70px;
+  }
+
+  #header__companyName {
+    font-size: 24px; /* smaller company text */
+    margin: 10px;
+  }
+}
+
+/* [Change #5] Improved compact layout for small phones */
+@media screen and (max-width: 600px) {
+  #header__logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  #header__logo img.logo {
+    width: 60px;
+    height: 60px;
+  }
+
+
+  #header__page {
+    font-size: 1.2rem;
+    position: static; /* remove absolute positioning for clean stacking */
+    transform: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  .header__nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}

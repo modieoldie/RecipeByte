@@ -1,0 +1,30 @@
+@import url("/website/frontend/css/sections/header.css");
+@import url("/website/frontend/css/sections/hero.css");
+@import url("/website/frontend/css/sections/product.css");
+
+
+:root {
+  --background-boxes: #D9D9D9;
+  --button-color: #680C0E;
+}
+
+.inria-serif-regular {
+  font-family: "Inria Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inria-serif-bold {
+  font-family: "Inria Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.inria-serif-regular-italic {
+  font-family: "Inria Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+
+

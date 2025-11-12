@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeByte</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Existing desktop CSS -->
+    <link rel="stylesheet" href="../css/landing.css">
+
+    <!-- ===========================
+         MOBILE-SPECIFIC STYLES
+         =========================== -->
+    <style>
+    @media screen and (max-width: 768px) {
+
+        /* Adjust nav */
+        nav {
+            flex-direction: column;
+            height: auto;
+            padding: 10px;
+        }
+
+        .nav-left {
+            margin-bottom: 10px;
+        }
+
+        .nav-left img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+
+        .nav-left h2 {
+            font-size: 18px;
+        }
+
+        .nav-right {
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        .nav-right button {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        /* Main content adjustments */
+        main img {
+            width: 90%; /* scale image to screen width */
+            max-width: 350px; /* don't exceed original size */
+            height: auto;
+        }
+
+        main h1 {
+            font-size: 20px;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+    }
+    </style>
+    <!-- =========================== -->
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <img src="../images/logo-13.png" alt="Kermit.">
+            <h2>RecipeByte</h2>
+        </div>
+        
+        <div class="nav-right">
+            <button onclick="window.location.href='login.html#signup'">Sign Up</button>
+            <button onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </nav>
+
+    <main>
+        <img src="../images/landing.jpg" alt="A recipe.">
+        <img src="../php/get_profile_pic.php" alt="Profile Picture" class="profile-pic">
+        <h1 style="text-align: center;">
+            Join our community and </br> share recipes today!
+        </h1>
+    </main>
+
+</body>
+</html>

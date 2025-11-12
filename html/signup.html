@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif&display=swap" rel="stylesheet"> <!-- Include Inria Serif -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inria Serif', serif; /* Change to Inria Serif */
+            height: 100vh; /* Full height of the viewport */
+            background-color: white; /* Background color of the page */
+        }
+
+        .taskbar {
+            display: flex;
+            align-items: center;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            width: 100%;
+        }
+
+        .logo {
+            height: 40px; /* Adjust the height as needed */
+            margin-right: 10px; /* Space between logo and text */
+        }
+
+        .company-name {
+            font-size: 24px; /* Adjust the font size as needed */
+        }
+
+        .input-container {
+            margin: 0 auto; /* Center the container */
+            text-align: center; /* Center the text */
+            display: flex; /* Enable flexbox */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            position: absolute; /* Position it absolutely */
+            top: 50%; /* Move it down to the middle */
+            left: 50%; /* Move it to the middle */
+            transform: translate(-50%, -50%); /* Center it */
+        }
+
+        .input-field {
+            width: 300px; /* Width of the input field */
+            padding: 10px; /* Padding inside the input */
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            margin-bottom: 10px; /* Space below the input */
+            font-family: 'Inria Serif', serif; /* Font for input field */
+	    box-sizing: border-box;
+        }
+
+.continue-button, .go-back-button {
+    width: 300px; /* Width of the buttons */
+    padding: 10px; /* Padding inside the buttons */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    margin-bottom: 10px; /* Space below buttons */
+    font-family: 'Inria Serif', serif; /* Font for buttons */
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Make the buttons block elements */
+    text-align: center; /* Center text in the button */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+        .continue-button {
+            background-color: black; /* Background color for continue button */
+            color: white; /* Text color for continue button */
+        }
+
+        .go-back-button {
+            background-color: lightgray; /* Background color for go back button */
+            color: black; /* Text color for go back button */
+        }
+	
+        .error-message {
+            color: red; /* Red color for error message */
+            margin-bottom: 10px; /* Space below the error message */
+            display: none; /* Initially hidden */
+        }
+    </style>
+    <script>
+    function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const contact = document.querySelector('input[name="contact"]').value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^\+?[0-9]{10,15}$/;
+    const errorMessage = document.getElementById('error-message');
+
+    if (emailPattern.test(contact) || phonePattern.test(contact)) {
+        errorMessage.style.display = 'none';
+
+        // Prepare form data to send
+        const formData = new FormData();
+        formData.append('contact', contact);
+
+        // Send data to process.php using fetch
+        fetch('process.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Assuming the response is JSON
+        })
+        .then(data => {
+            console.log('Success:', data); // Handle success response
+            // Redirect to password.html in current tab
+            window.location.href = 'create_password.html';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = "There was an error processing your request.";
+        });
+    } else {
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = "Invalid phone/email!";
+    }
+}
+
+        function checkInput() {
+            const contact = document.querySelector('input[name="contact"]').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+            const phonePattern = /^\+?[0-9]{10,15}$/; // Simple phone regex
+            const errorMessage = document.getElementById('error-message');
+            const continueButton = document.querySelector('.continue-button');
+
+            if (emailPattern.test(contact) || phonePattern.test(contact)) {
+                errorMessage.style.display = 'none'; // Hide error message
+                continueButton.disabled = false; // Enable the continue button
+            } else {
+                errorMessage.style.display = 'block'; // Show error message
+               errorMessage.textContent = "Invalid phone/email!"; // Set error message text
+                continueButton.disabled = true; // Disable the continue button
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="taskbar">
+        <a href="landing.html" style="display: flex; align-items: center; text-decoration: none; color: white;"> <!-- Wrap only the image and text in an anchor tag -->
+            <img src="https://aptitude.cse.buffalo.edu/CSE442/2025-Fall/cse-442aj/website/images/logo-13.png" class="logo">
+            <span class="company-name">RecipeByte</span>
+        </a>
+    </div>
+
+    <div class="input-container">
+        <img src="../php/get_profile_pic.php" alt="Profile Picture" class="profile-pic">
+        <div id="error-message" class="error-message">Invalid phone/email!</div> <!-- Error message element -->
+        <form id="signupForm" method="POST" onsubmit="handleFormSubmit(event);">
+            <input type="text" class="input-field" name="contact" placeholder="Enter email or phone number" required oninput="checkInput();">
+            <button type="submit" class="continue-button" disabled>Continue</button> <!-- Button initially disabled -->
+            <a href="landing.html" class="go-back-button">Go Back</a> <!-- Link for Go Back button -->
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-image__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0 , 0, 0, 0.4);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-search-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: white;
+    width: 60%;
+    max-width: 600px;
+    max-height: 50px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0 , 0, 0, 0.8);
+}
+
+#heroSearchForm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-search-container .search-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+}
+
+.hero-search-container .search-input {
+    border:none;
+    outline: none;
+    background: transparent;
+    flex-grow: 1;
+    min-width: 100px;
+    width: 100%;
+    font-size: 20px;
+    color: #000000;
+}
+
+.hero-search-container .search-input::placeholder {
+    color: #999;
+}
+
+.search-toggle-icons .toggle-icon {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.toggle-icon:hover {
+    transform: scale(1.1);
+}
+
+.toggle-icon.hidden {
+    display: none;
+}

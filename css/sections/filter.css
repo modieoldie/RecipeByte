@@ -1,0 +1,14 @@
+.filter-section {
+    padding: 20px 40px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#recipe-filter {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(0, 0, 0);
+}
